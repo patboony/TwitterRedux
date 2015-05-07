@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tweetTableView: UITableView!
     
-    var usernameToLoadProfile: String!
+    var usernameToLoadProfile: String! = "patboony"
     var userProfile: User!
     
     override func viewDidLoad() {
@@ -28,8 +28,10 @@ class ProfileViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         // How to make sure this is not nil?
-        println(usernameToLoadProfile)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         TwitterClient.sharedInstance.getUserInfoWithParams(["screen_name":usernameToLoadProfile] as NSDictionary) { (user, error) -> () in
             if user != nil {
                 self.userProfile = user!

@@ -19,7 +19,7 @@ Time spent: 4 hours
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
 
 #### Home Timeline
-- [ ] Tapping on a user image should bring up that user's profile page << I have yet to figure this out
+- [x] Tapping on a user image should bring up that user's profile page (slightly buggy)
 
 #### Optional: Account switching
 - [ ] Long press on tab bar to bring up Account view with animation

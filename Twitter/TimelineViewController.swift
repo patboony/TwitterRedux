@@ -88,6 +88,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         cell.tweetTextLabel.text = tweets?[indexPath.row].text!
         cell.nameLabel.text = tweets?[indexPath.row].user!.name!
+        cell.profileImageView.tag = indexPath.row
         cell.timeStampLabel.text = calculateTimePassedSinceTimestamp(tweets?[indexPath.row].createdAt)
         cell.screennameLabel.text = "@" + (tweets?[indexPath.row].user!.screenname)!
         cell.favoriteCount = (tweets?[indexPath.row].favorited)!
@@ -98,6 +99,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         if let profileImageURL = tweets?[indexPath.row].user!.profileImageUrl {
             cell.profileImageView.setImageWithURL(NSURL(string: profileImageURL))
+
         }
         cell.tweetID = tweets?[indexPath.row].tweetID!
         
@@ -142,6 +144,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             
             let composeNC = segue.destinationViewController as! UINavigationController
             let composeVC = composeNC.visibleViewController as! ComposeViewController
+        }
+        
+        if segue.identifier == "showProfileSegue" {
+            
+            let profileVC = segue.destinationViewController as! ProfileViewController
+            let senderTap = sender as! UITapGestureRecognizer
+            let senderImage = senderTap.view as! UIImageView
+            if tweets != nil {
+                profileVC.usernameToLoadProfile = tweets![senderImage.tag].user!.screenname!
+                println(profileVC.usernameToLoadProfile)
+                println(senderImage.tag)
+            }
         }
         
     }
