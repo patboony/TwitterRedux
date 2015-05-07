@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="342"/>
+            <point key="canvasLocation" x="-142" y="342"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="fGD-S2-gbm">
@@ -495,12 +495,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4xN-or-lK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="342"/>
+            <point key="canvasLocation" x="749" y="342"/>
         </scene>
-        <!--View Controller-->
+        <!--Hamburger View Controller-->
         <scene sceneID="SRJ-zB-b0v">
             <objects>
-                <viewController id="I1z-Gk-LCs" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HamburgerViewController" id="I1z-Gk-LCs" customClass="HamburgerViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CQQ-2m-KJi"/>
                         <viewControllerLayoutGuide type="bottom" id="uQR-7L-hGQ"/>
@@ -513,7 +513,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVl-iA-Zrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="979"/>
+            <point key="canvasLocation" x="323" y="756"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="lLp-B9-55l">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="Uv8-Kq-Mpo" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g2U-e3-yqS"/>
+                        <viewControllerLayoutGuide type="bottom" id="XDI-Lg-QoI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C5t-1e-AYu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9W-oU-geS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1130" y="991"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nUk-7H-3Rb">
+            <objects>
+                <viewController id="Rug-on-WX4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jDH-iS-Yc6"/>
+                        <viewControllerLayoutGuide type="bottom" id="baP-T2-DN8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uPS-kt-hmT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESw-Cq-h9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749" y="991"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ylb-mZ-Su4">
