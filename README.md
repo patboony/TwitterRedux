@@ -2,7 +2,7 @@
 
 Improved Twitter App with Hamburger Menu, Profile Page and Home Timeline [Twitter API](https://apps.twitter.com/).
 
-Time spent: 4 hours
+Time spent: 5 hours
 
 ### Features
 
