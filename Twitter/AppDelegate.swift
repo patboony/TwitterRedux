@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             // Go to the timeline screen
             println("User \(User.currentUser?.name) can go to timeline")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("NavigationControllerTimeline") as! UIViewController
+            var vc = storyboard.instantiateViewControllerWithIdentifier("HamburgerViewController") as! UIViewController
             window?.rootViewController = vc
         } else {
             println("go to login screen")

@@ -66,7 +66,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="pDB-wY-jtc" kind="modal" identifier="loginSegue" id="LJU-xW-4X8"/>
+                        <segue destination="I1z-Gk-LCs" kind="modal" identifier="loginSegue" id="gnE-rN-3AA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -477,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLJ-gE-f73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2117" y="774"/>
+            <point key="canvasLocation" x="2649" y="774"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MBJ-xO-r4L">
@@ -508,12 +508,36 @@
                     <view key="view" contentMode="scaleToFill" id="la5-ro-Zir">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tj1-Xa-sWg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9bF-41-hSQ" appends="YES" id="NQz-MF-jsz"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Tj1-Xa-sWg" secondAttribute="trailing" id="H1F-lV-hhl"/>
+                            <constraint firstItem="Tj1-Xa-sWg" firstAttribute="leading" secondItem="la5-ro-Zir" secondAttribute="leading" id="Zdr-hL-PrJ"/>
+                            <constraint firstItem="uQR-7L-hGQ" firstAttribute="top" secondItem="Tj1-Xa-sWg" secondAttribute="bottom" id="d02-0N-yqb"/>
+                            <constraint firstItem="Tj1-Xa-sWg" firstAttribute="top" secondItem="la5-ro-Zir" secondAttribute="top" id="pVW-is-kfj"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="Tj1-Xa-sWg" id="EOF-2C-aYp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVl-iA-Zrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9bF-41-hSQ">
+                    <connections>
+                        <action selector="swipeAction:" destination="I1z-Gk-LCs" id="Nah-UD-iHi"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="323" y="756"/>
+            <point key="canvasLocation" x="297" y="342"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="lLp-B9-55l">
@@ -531,12 +555,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9W-oU-geS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1130" y="991"/>
+            <point key="canvasLocation" x="1550" y="985"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="nUk-7H-3Rb">
             <objects>
-                <viewController id="Rug-on-WX4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="Rug-on-WX4" customClass="MenuViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jDH-iS-Yc6"/>
                         <viewControllerLayoutGuide type="bottom" id="baP-T2-DN8"/>
@@ -544,12 +568,21 @@
                     <view key="view" contentMode="scaleToFill" id="uPS-kt-hmT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngQ-j1-ruP">
+                                <rect key="frame" x="0.0" y="34" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Mnn-4e-SGo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESw-Cq-h9I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="991"/>
+            <point key="canvasLocation" x="1130" y="985"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ylb-mZ-Su4">
@@ -567,7 +600,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb2-70-LEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720" y="774"/>
+            <point key="canvasLocation" x="2252" y="774"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="juL-AQ-a7f">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationControllerMenu" automaticallyAdjustsScrollViewInsets="NO" id="OjP-dE-sm7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XKw-OG-9F5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Rug-on-WX4" kind="relationship" relationship="rootViewController" id="GnZ-cv-bAB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i1o-8i-h5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749" y="985"/>
         </scene>
     </scenes>
     <resources>
