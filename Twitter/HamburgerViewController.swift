@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HamburgerViewController: UIViewController {
+class HamburgerViewController: UIViewController, ApplyMenuDelegate {
     
     var mainVC: UINavigationController!
     var menuVC: UINavigationController!
@@ -22,21 +22,55 @@ class HamburgerViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        loadTimeLineInMainVC()
+        
         menuVC = storyboard.instantiateViewControllerWithIdentifier("NavigationControllerMenu") as! UINavigationController
-        mainVC = storyboard.instantiateViewControllerWithIdentifier("NavigationControllerTimeline") as! UINavigationController
-        mainVC.view.frame = containerView.frame
-        containerView.addSubview(mainVC.view)
-        
-        originalCenter = mainVC.visibleViewController.view.center
-        println(originalCenter)
-        
-        menuVC.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: containerView.frame.height))
+        menuVC.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: 320, height: containerView.frame.height))
         containerView.insertSubview(menuVC.view, belowSubview: mainVC.view)
+        
+        let menuVisibleVC = menuVC.visibleViewController as! MenuViewController
+        menuVisibleVC.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadTimeLineInMainVC(){
+        if mainVC != nil {
+            mainVC.willMoveToParentViewController(nil)
+            mainVC.view.removeFromSuperview()
+            mainVC.removeFromParentViewController()
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        mainVC = storyboard.instantiateViewControllerWithIdentifier("NavigationControllerTimeline") as! UINavigationController
+        addChildViewController(mainVC)
+        mainVC.view.frame = containerView.frame
+        containerView.addSubview(mainVC.view)
+        originalCenter = mainVC.visibleViewController.view.center
+        //println(originalCenter)
+    }
+    
+    func loadProfileInMainVCWithScreenname(screenname: String){
+        if mainVC != nil {
+            mainVC.willMoveToParentViewController(nil)
+            mainVC.view.removeFromSuperview()
+            mainVC.removeFromParentViewController()
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        mainVC = storyboard.instantiateViewControllerWithIdentifier("NavigationControllerProfile") as! UINavigationController
+        addChildViewController(mainVC)
+        mainVC.view.frame = containerView.frame
+        
+        let profileVC = mainVC.visibleViewController as! ProfileViewController
+        profileVC.usernameToLoadProfile = screenname
+        
+        containerView.insertSubview(mainVC.view, aboveSubview: menuVC.view)
+        originalCenter = mainVC.visibleViewController.view.center
     }
     
     @IBAction func swipeAction(sender: UIPanGestureRecognizer) {
@@ -53,8 +87,6 @@ class HamburgerViewController: UIViewController {
             if mainVC.view.frame.origin.x
                 + translation.x >= 0 {
                 mainVC.view.center = CGPoint(x: mainVC.view.center.x + translation.x, y: mainVC.view.center.y)
-                // Is there another way to do this?
-                menuVC.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: menuVC.view.frame.width + translation.x, height: containerView.frame.height))
             }
             sender.setTranslation(CGPointZero, inView: self.view)
             
@@ -70,7 +102,6 @@ class HamburgerViewController: UIViewController {
     func showHamburgerMenu(){
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.mainVC.view.center = CGPoint(x: 500, y: self.originalCenter.y)
-            self.menuVC.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: self.mainVC.view.frame.origin.x, height: self.containerView.frame.height))
             
             }, completion: { (Bool) -> Void in
                 // Remove stuff
@@ -80,11 +111,39 @@ class HamburgerViewController: UIViewController {
     func hideHamburgerMenu(){
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.mainVC.view.center = self.originalCenter
-            self.menuVC.view.frame = CGRect(origin: CGPointZero, size: CGSize(width: 0, height: self.containerView.frame.height))
             
             }, completion: { (Bool) -> Void in
                 // Remove stuff
         })
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+    
+    func ApplyMenu(menuViewController: MenuViewController, menuValue value: Int){
+        if value == 0 {
+            hideHamburgerMenu()
+            // Hope this doesn't crash
+            delay(0.3, closure: {
+                self.loadProfileInMainVCWithScreenname(User.currentUser!.screenname!)
+            })
+            
+        }
+        if value == 1 {
+            hideHamburgerMenu()
+            delay(0.3, closure: {
+                self.loadTimeLineInMainVC()
+            })
+        }
+        if value == 2 {
+            hideHamburgerMenu()
+        }
     }
 
     /*

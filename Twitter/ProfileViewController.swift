@@ -10,10 +10,43 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    
+    @IBOutlet weak var screennameLabel: UILabel!
+    var usernameToLoadProfile: String!
+    var userProfile: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // How to make sure this is not nil?
+        println(usernameToLoadProfile)
+        
+        TwitterClient.sharedInstance.getUserInfoWithParams(["screen_name":usernameToLoadProfile] as NSDictionary) { (user, error) -> () in
+            if user != nil {
+                self.userProfile = user!
+                self.updateProfilePage()
+            } else {
+                println(error)
+            }
+        }
+    }
+    
+    func updateProfilePage(){
+        
+        if userProfile != nil {
+            profileImageView.setImageWithURL(NSURL(string: userProfile.profileImageUrl!))
+            nameLabel.text = userProfile.name!
+            screennameLabel.text = "@" + userProfile.screenname!
+            tweetsCountLabel.text = "Tweets: " + String(userProfile.tweetsCount!)
+            followingCountLabel.text = "Following: " + String(userProfile.followingCount!)
+            followersCountLabel.text = "Followers: " + String(userProfile.followersCount!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
