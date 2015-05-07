@@ -17,6 +17,7 @@ Time spent: 4 hours
 - [ ] Optional: Implement the paging view for the user description.
 - [ ] Optional: As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
+
 #### Home Timeline
 - [ ] Tapping on a user image should bring up that user's profile page << I have yet to figure this out
 

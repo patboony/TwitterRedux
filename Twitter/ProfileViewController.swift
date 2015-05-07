@@ -15,8 +15,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tweetsCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
-    
+    @IBOutlet weak var profileBackgroundImageView: UIImageView!
     @IBOutlet weak var screennameLabel: UILabel!
+    
+    @IBOutlet weak var tweetTableView: UITableView!
+    
     var usernameToLoadProfile: String!
     var userProfile: User!
     
@@ -41,11 +44,12 @@ class ProfileViewController: UIViewController {
         
         if userProfile != nil {
             profileImageView.setImageWithURL(NSURL(string: userProfile.profileImageUrl!))
+            profileBackgroundImageView.setImageWithURL(NSURL(string: userProfile.profileBackgroundImageUrl!))
             nameLabel.text = userProfile.name!
             screennameLabel.text = "@" + userProfile.screenname!
-            tweetsCountLabel.text = "Tweets: " + String(userProfile.tweetsCount!)
-            followingCountLabel.text = "Following: " + String(userProfile.followingCount!)
-            followersCountLabel.text = "Followers: " + String(userProfile.followersCount!)
+            tweetsCountLabel.text = String(userProfile.tweetsCount!)
+            followingCountLabel.text = String(userProfile.followingCount!)
+            followersCountLabel.text = String(userProfile.followersCount!)
         }
     }
 
